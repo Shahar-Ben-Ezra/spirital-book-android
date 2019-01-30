@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.shaharben_ezra.myapplication.BooksByCategoryTabs"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_share_black_24dp"
+        android:title="@string/search"
+        app:showAsAction="always"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_notifications_white_24dp"
+        android:title="@string/alart"
+        app:showAsAction="never|ifRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</menu>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:elevation="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textAppearance="?android:textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/txtOptionDigit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:text="&#8942;"
+                android:textAppearance="?android:textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/Written_by"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtTitle"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:text="Written by "
+                android:textAppearance="?android:textAppearance" />
+
+            <TextView
+                android:id="@+id/Written_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtTitle"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="90dp"
+                android:layout_marginTop="10dp"
+                android:text="Written_Name"
+                android:textAppearance="?android:textAppearance" />
+
+            <ImageView
+                android:id="@+id/imageViewBook"
+                android:layout_width="85dp"
+                android:layout_height="82dp"
+                android:layout_below="@id/Written_by"
+                android:src="@mipmap/ic_launcher_round"
+                android:layout_alignStart="@+id/txtTitle"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="10dp"
+                 />
+
+
+            <TextView
+                android:id="@+id/completed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Written_Name"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="90dp"
+                android:layout_marginTop="10dp"
+                android:text="phase "
+                android:textAppearance="?android:textAppearance" />
+
+            <TextView
+                android:id="@+id/Chapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/completed"
+                android:layout_alignStart="@+id/Written_Name"
+                android:layout_marginTop="2dp"
+                android:text="Chapter+"
+                android:textAppearance="?android:textAppearance" />
+
+            <TextView
+                android:id="@+id/length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Chapter"
+                android:layout_alignStart="@+id/Chapter"
+                android:layout_marginTop="2dp"
+                android:text="Length+"
+                android:textAppearance="?android:textAppearance" />
+
+            <TextView
+                android:id="@+id/Update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/length"
+                android:layout_alignStart="@+id/length"
+                android:layout_marginTop="2dp"
+                android:text="Update+"
+                android:textAppearance="?android:textAppearance" />
+
+            <TextView
+                android:id="@+id/Language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageViewBook"
+                android:layout_alignStart="@+id/imageViewBook"
+                android:layout_marginTop="7dp"
+                android:text="Language +"
+                android:textAppearance="?android:textAppearance" />
+
+            <TextView
+                android:id="@+id/categories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Language"
+                android:layout_marginTop="5dp"
+                android:text="Categories +"
+                android:textAppearance="?android:textAppearance" />
+
+
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="32dp"
+                android:layout_height="24dp"
+                android:layout_below="@id/categories"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/baseline_message_black_24dp" />
+
+            <TextView
+                android:id="@+id/vote_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/categories"
+                android:layout_marginStart="-4dp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@+id/imageView3"
+                android:text="+"
+                android:textAppearance="?android:textAppearance" />
+
+            <ImageView
+                android:id="@+id/heart"
+                android:layout_width="25dp"
+                android:layout_height="28dp"
+                android:layout_below="@id/categories"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="12dp"
+                android:layout_toEndOf="@+id/vote_comment"
+                android:src="@drawable/hearts" />
+
+            <TextView
+                android:id="@+id/vote_heart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/categories"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="14dp"
+                android:layout_toEndOf="@+id/imageView3"
+                android:text="+"
+                android:textAppearance="?android:textAppearance" />
+
+            <ImageView
+                android:id="@+id/list"
+                android:layout_width="24dp"
+                android:layout_height="26dp"
+                android:layout_below="@id/categories"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_toEndOf="@+id/heart"
+                android:src="@drawable/outline_list_black_18dp" />
+
+            <TextView
+                android:id="@+id/vote_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/categories"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="14dp"
+                android:layout_toEndOf="@+id/imageView3"
+                android:text="+"
+                android:textAppearance="?android:textAppearance" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

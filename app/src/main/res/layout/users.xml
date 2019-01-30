@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/user_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:gravity="center_horizontal"
+        android:onClick="PressBtbActivity"
+        android:text="@string/user1"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/user_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:gravity="center_horizontal"
+        android:onClick="PressBtbActivity"
+        android:textStyle="bold"
+         android:text="@string/user2" />
+
+    <Button
+        android:id="@+id/user_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:gravity="center_horizontal"
+        android:onClick="PressBtbActivity"
+        android:textStyle="bold"
+         android:text="@string/user3" />
+
+    <Button
+        android:id="@+id/user_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:textStyle="bold"
+        android:onClick="PressBtbActivity"
+        android:gravity="center_horizontal"
+         android:text="@string/user4"  />
+
+</LinearLayout>
+

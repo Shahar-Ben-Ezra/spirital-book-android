@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarCommentList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/CommentList"
+            android:layout_width="match_parent"
+            android:layout_height="552dp"></ListView>
+        <ImageView
+            android:id="@+id/imageView_comment_list"
+            android:layout_width="162dp"
+            android:layout_height="98dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="110dp"
+            android:layout_marginEnd="107dp"
+            android:src="@drawable/baseline_message_black_24dp" />
+        <TextView
+            android:id="@+id/TextView_CommentsLIST"
+            android:layout_width="270dp"
+            android:layout_height="62dp"
+            android:layout_below="@id/imageView_comment_list"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="68dp"
+            android:text="@string/no_comments_found_be_the_first_one_to_leave_a_comment"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+
+        <TextView
+            android:id="@+id/ET_click"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="550dp"
+            android:layout_marginEnd="0dp"
+            android:background="@color/colorPrimary"
+            android:clickable="true"
+            android:hint="@string/write_a_comment"
+            android:paddingLeft="10dp"
+            android:paddingTop="15dp"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <ImageView
+            android:id="@+id/imageViewBook_current_read"
+            android:layout_height="62dp"
+            android:layout_width="56dp"
+            android:layout_marginEnd="355dp"
+            android:src="@drawable/thumb2_65x65_noavatar"
+             android:layout_alignParentEnd="true"
+            android:layout_marginTop="550dp"
+            android:background="@color/colorPrimary"
+             />
+    </RelativeLayout>
+
+</LinearLayout>

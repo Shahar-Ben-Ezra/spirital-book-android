@@ -1,0 +1,170 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.example.shaharben_ezra.myapplication.Library">
+
+
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary1"
+        android:tooltipText=""
+         >
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary1"
+
+        >
+        <RelativeLayout
+             android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            >
+        <ImageView
+            android:id="@+id/imageView6"
+            android:background="@color/colorPrimary1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:srcCompat="@mipmap/ic_profile121_round" />
+
+
+            <TextView
+                android:id="@+id/textViewUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:layout_below="@id/imageView6"
+                android:layout_marginLeft="175dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimary1"
+                android:text="@string/user1" />
+
+
+            <TextView
+                android:id="@+id/stories_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewUser"
+                android:layout_marginTop="18dp"
+                android:layout_marginLeft="55dp"
+
+                android:background="@color/colorPrimary1"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/stories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/stories_num"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="30dp"
+
+                android:background="@color/colorPrimary1"
+                android:text="STORIES" />
+            <TextView
+                android:id="@+id/reading_list_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewUser"
+                android:layout_marginTop="18dp"
+                android:layout_marginLeft="300dp"
+                 android:background="@color/colorPrimary1"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/reading_list_PROFILE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:layout_below="@id/reading_list_num"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="250dp"
+                 android:background="@color/colorPrimary1"
+                android:text="@string/reading_lists" />
+
+
+            <TextView
+                android:id="@+id/followers_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:layout_below="@id/textViewUser"
+                android:layout_marginTop="18dp"
+                android:layout_marginLeft="170dp"
+                 android:background="@color/colorPrimary1"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/followers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="140dp"
+                android:layout_below="@id/followers_num"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorPrimary1"
+                android:text="@string/followers" />
+
+
+
+
+    </RelativeLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+
+
+
+
+    <HorizontalScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabprofile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary1">
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/tabItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="STORIES" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/tabItem2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Updates" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/tabItem3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reading_lists" />
+
+        </android.support.design.widget.TabLayout>
+    </HorizontalScrollView>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container_profile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+</LinearLayout>

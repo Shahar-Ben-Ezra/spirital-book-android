@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="Entity.MainActivity">
+    <item
+        android:id="@+id/action_search"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/search"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_alart"
+        android:icon="@drawable/ic_notifications_white_24dp"
+        android:title="@string/alart"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/Profile"
+        android:icon="@mipmap/ic_profile121_round"
+        android:title="@string/profile"
+        app:showAsAction="always" />
+
+</menu>

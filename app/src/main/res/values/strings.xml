@@ -1,0 +1,195 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="tab_text_1">NEWEST</string>
+    <string name="tab_text_2">MOST POPULAR</string>
+    <string name="tab_text_3">MOST COMMENT</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nav_discover">Discover</string>
+    <string name="nav_library">Library</string>
+    <string name="nab_myStories">My Stories</string>
+    <string name="nav_act">Activities</string>
+    <string name="nav_mes">Messeges</string>
+    <string name="search">Search</string>
+    <string name="alart">alart</string>
+    <string name="Final">final</string>
+
+
+    <string-array name="Discover">
+        <item>CATEGORIES</item>
+        <item>RECOMMENDED</item>
+        <item>NEWEST</item>
+        <item>GENRES</item>
+
+    </string-array>
+
+    <string-array name="Library">
+        <item>CURRENT READS</item>
+        <item>ARCHIVE</item>
+        <item>READING LISTS</item>
+
+    </string-array>
+
+
+    <string-array name="My_Stories">
+        <item>MY STORIES</item>
+        <item>DELETED STORIES</item>
+
+
+    </string-array>
+
+    <string-array name="ACTIVITIES">
+        <item>ACTIVITIES</item>
+        <item>UPDATE</item>
+        <item>MENTIONS</item>
+
+
+    </string-array>
+
+    <string-array name="MESSAGES">
+        <item>INBOX</item>
+        <item>SENT</item>
+        <item>TRASH</item>
+
+    </string-array>
+
+
+    <string-array name="generlist">
+        <item>Action</item>
+        <item>Adventure</item>
+        <item>Bishoujo</item>
+        <item>Comedy</item>
+        <item>Drama</item>
+        <item>sport</item>
+        <item>family</item>
+        <item>Fantasy</item>
+        <item>Party</item>
+
+    </string-array>
+    <string name="title_activity_gener_tabs">GenerTabs</string>
+    <string name="submit_story">SUBMIT STORY</string>
+    <string name="no_character_selected">No character selected</string>
+    <string name="no_category_selected">No category selected</string>
+    <string name="story_s_characters">Story\'s characters</string>
+    <string name="story_category">Story category</string>
+    <string name="story_language">Story Language</string>
+    <string name="cover_image">Cover Image</string>
+    <string name="story_title">Story Title</string>
+
+    <string-array name="ui_Language_spinner">
+        <item>English</item>
+        <item>Hebrew</item>
+
+    </string-array>
+
+
+    <string-array name="Rate">
+        <item>Rate 1 </item>
+        <item>Rate 2 </item>
+        <item>Rate 3 </item>
+        <item>Rate 4 </item>
+        <item>Rate 5 </item>
+
+    </string-array>
+    <string name="title_activity_create_story">Create_story</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="chapter_title">Chapter_Title</string>
+    <string name="autor_s_notes">Autor\'s Notes</string>
+    <string name="story_content">Story Content</string>
+    <string name="endnotes">Endnotes</string>
+    <string name="completed_story">completed story</string>
+    <string name="do_not_require_readers_to_leave_comments_to_favorite_your_story_or_rate_it_for_you_to_update_your_story">Do not require readers to leave comments,to favorite your story or rate it for you to update your story-</string>
+    <string name="end_story">select this option if you finished your story,in other words,i you are not going to upload any chapters</string>
+    <string name="submit_chapter">submit chapter</string>
+    <string name="Submit_story">Submit story</string>
+    <string name="there_is_no_activity_yet_follow_more_people">There is no activity yet Follow more people</string>
+
+
+    <string-array name="typeCategories">
+        <item>Animes Mangas</item>
+        <item>Bands Musicians</item>
+        <item>Cartons</item>
+        <item>Celebrities</item>
+        <item>Movies</item>
+        <item>Games</item>
+        <item>Original Stories</item>
+        <item>Books</item>
+        <item>Mytologies lagends </item>
+        <item>Comics</item>
+        <item>Series,Noveles TV</item>
+
+    </string-array>
+
+
+    <string-array name="Categories">
+        <item>Select a Category Type</item>
+    </string-array>
+    <string name="error">Error occured. Please try again later.</string>
+    <string name="title">Title</string>
+    <string name="written_name">Written_Name</string>
+    <string name="written_by">Written by</string>
+    <string name="phase">phase</string>
+    <string name="chapter">Chapter+</string>
+    <string name="length">Length+</string>
+    <string name="update">Update+</string>
+    <string name="srories">srories</string>
+    <string name="dialog_mes">Give a name to your new reading list</string>
+    <string name="dialog_title">Create a new reading list</string>
+    <string name="create">Create</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="rename">Rename</string>
+    <string name="add_to_remove_from_library">add to/remove from library</string>
+    <string name="add_to_list">add to list</string>
+    <string name="copy_link">copy link</string>
+    <string name="share">Share</string>
+    <string name="list_successfully_renamed">list successfully renamed!</string>
+    <string name="renane">Rename</string>
+    <string name="deleted_list">list successfully deleted!</string>
+    <string name="list_created">list successfully created!</string>
+    <string name="num">num</string>
+    <string name="user3">user3</string>
+    <string name="user4">user4</string>
+    <string name="user2">user2</string>
+    <string name="user1">user1</string>
+    <string name="next_chapter">Next Chapter</string>
+    <string name="coment">Coment</string>
+    <string name="rate">Rate</string>
+    <string name="write_a_comment">write a comment...</string>
+    <string name="send_comment">send comment</string>
+    <string name="date">date</string>
+    <string name="archived_stories_take_less_space_in_your_device_but_they_can_not_be_read_without_internet_connection">Archived stories take less space in your device but they can not be read without internet connection</string>
+    <string name="no_stories_in_your_library">No stories in your library</string>
+    <string name="no_story_added_in_this_list">No story added in this list</string>
+    <string name="no_comments_found_be_the_first_one_to_leave_a_comment">No comments found. Be the first one to leave a comment!</string>
+    <string name="comments">Comments</string>
+    <string name="write_comment">write your comment</string>
+    <string name="no">no</string>
+    <string name="yes">yes</string>
+    <string name="are_you">Are you sure you want to discard this post</string>
+    <string name="on">on</string>
+    <string name="story_succesfully">story successfully added to the list</string>
+    <string name="remove">remove from library</string>
+    <string name="add_to_librart">add to library</string>
+    <string name="dont_need">dont need to do that</string>
+    <string name="already_added">story already added to the list!</string>
+    <string name="user">USER</string>
+    <string name="no_data">no data</string>
+    <string name="add_category">ADD CATEGORY</string>
+    <string name="category">category</string>
+    <string name="Type">Type</string>
+    <string name="CHOOSE">choose categories</string>
+    <string name="dont">dont need that</string>
+    <string name="there_are_not">There are not books in this category</string>
+    <string name="there_are_no">there are no chapters to this book</string>
+    <string name="open_in_browser">open in browser</string>
+    <string name="profile">profile</string>
+    <string name="reading_lists">READING LISTS</string>
+    <string name="followers">FOLLOWERS</string>
+    <string name="add_chapter">Add Chapter</string>
+    <string name="edit">edit</string>
+
+</resources>
