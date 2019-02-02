@@ -17,6 +17,10 @@ import java.util.List;
 import core.Book;
 import core.MyInfoManager;
 
+/**
+ * this Reading List Stories activity will show all the stories at the reading list
+ * using a  Recycler View
+ */
 public class ReadingListStories extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -32,17 +36,19 @@ public class ReadingListStories extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager( this));
         String bookList_id= getIntent().getStringExtra("int" );
         String s=  getIntent().getStringExtra("name");
-            listItems= MyInfoManager.getInstance().getAllTheBooksAtList(bookList_id);
+        listItems= MyInfoManager.getInstance().getAllTheBooksAtList(bookList_id);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarReadingListStories_VIEW);
         setSupportActionBar(toolbar);
-        toolbar.setSubtitle(listItems.size()+" Stories");
-         getSupportActionBar().setTitle(s);
+        toolbar.setSubtitle(listItems.size()+" Stories");// will show the number of stories at the list
+        getSupportActionBar().setTitle(s);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-         adapter = new MyAdapter(listItems, this ) ;
+        adapter = new MyAdapter(listItems, this ,false) ;
         recyclerView.setAdapter(adapter);
+
         TextView TextView = (TextView)  findViewById(R.id.TextView_readingList_stories);
         ImageView ImageView = (ImageView)  findViewById(R.id.imageView_readingList_stories);
 
+/// if list item is empty will show a image and text
         if (listItems.isEmpty()){
             ImageView.setVisibility(View.VISIBLE);
             TextView.setVisibility(View.VISIBLE);

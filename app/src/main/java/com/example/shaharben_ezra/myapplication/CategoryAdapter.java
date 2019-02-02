@@ -11,8 +11,12 @@ import android.widget.TextView;
 import java.util.List;
 
 import core.Category;
+import core.MyInfoManager;
 
-
+/**
+ * author Shahar Ben-Ezra
+ * Category Adapter will show all the books that have the same category that the user choose
+ */
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
    private List< Category> listCategory;
@@ -38,9 +42,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         Category = listCategory.get(position);
         holder.itemView.setTag(listCategory.get(position));
         holder.CategoryName1.setText(Category.getCategory_name());
-        holder.storiesCount.setText(Category.getConut()+" stories"    );
-
-    }
+        int stories_count =MyInfoManager.getInstance().getAllTheBooksCategoryName(Category.getCategory_name()).size();
+        holder.storiesCount.setText(String.valueOf(stories_count)+" stories");
+     }
 
 
     @Override

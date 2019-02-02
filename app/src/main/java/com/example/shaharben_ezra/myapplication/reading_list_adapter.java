@@ -24,6 +24,10 @@ import java.util.List;
 import core.BookList;
 import core.MyInfoManager;
 
+/**
+ * author Shahar Ben-Ezra
+ * this adapter handel the reading list stories
+ */
     public class reading_list_adapter extends RecyclerView.Adapter<  reading_list_adapter.ViewHolder> {
 
         private List<BookList> listItems;
@@ -61,15 +65,14 @@ import core.MyInfoManager;
 
                             BookList=listItems.get(position);
                             switch (item.getItemId()) {
-                                case R.id.delete_menu:
-                                    //Delete item
+                                case R.id.delete_menu: //Delete item
+
                                     MyInfoManager.getInstance().deleteListbook(BookList);
                                     v.findViewById(android.R.id.content);
                                     Snackbar snackbar = Snackbar
                                             .make(v,R.string.deleted_list, Snackbar.LENGTH_LONG);
                                     snackbar.show();
-                                 //   listItems.remove(BookList);
-                                    notifyDataSetChanged();
+                                     notifyDataSetChanged();
 
                                     break;
                                 case R.id.Rename_menu:
@@ -137,6 +140,7 @@ import core.MyInfoManager;
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         Intent intent1 = new Intent( mContext,ReadingListStories.class);
                         int x = listItems.indexOf((core.BookList) v.getTag());
                         BookList=listItems.get(x);

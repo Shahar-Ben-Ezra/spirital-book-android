@@ -23,6 +23,7 @@ import core.Chapter;
 import core.MyInfoManager;
 
 /**
+ * author Shahar Ben-Ezra
  * this class is chapter activity here you add the chapter to specific book
  */
 public class ChapterActivity extends AppCompatActivity {

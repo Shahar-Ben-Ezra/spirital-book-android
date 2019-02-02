@@ -16,25 +16,31 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+/**
+ *  author Shahar Ben-Ezra
+ *  type fragment will show all the type at the app
+ *
+ */
 
 public class Type_fragment extends Fragment {
 
-
     private ListView listView;
-    private ArrayList<String>typeArrayList;
     private  ArrayAdapter<String> adapter;
     Context Context;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
       final View v= inflater.inflate(R.layout.type,container,false);
+
         Context=v.getContext();
         listView=(ListView)v.findViewById(R.id.listtype);
         String[] Typecategories;
 
         Typecategories=getResources().getStringArray(R.array.typeCategories);
         adapter=new ArrayAdapter<String>(this.getActivity() ,android.R.layout.simple_list_item_1,android.R.id.text1,Typecategories);
-         listView.setAdapter(adapter);
+        listView.setAdapter(adapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -44,10 +50,9 @@ public class Type_fragment extends Fragment {
                 intent1.putExtra("int", typeCategory) ;
                 startActivity(intent1);
 
-
-
             }
         });
+
         return v;
     }
 }

@@ -20,7 +20,7 @@ public interface NetworkResListener {
      */
     public void onPostUpdate(byte[] res, ResStatus status);
 
-    public void onPostUpdate(JSONObject res, ResStatus status);
+    public void onPostUpdate(JSONObject res, ResStatus status,String requestNum);
 
     public void onPostUpdate(Bitmap res, ResStatus status);
 }

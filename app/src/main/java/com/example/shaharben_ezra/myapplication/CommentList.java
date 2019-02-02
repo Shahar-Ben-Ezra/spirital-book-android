@@ -91,4 +91,15 @@ public class CommentList extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final  String ChapterId=  getIntent().getStringExtra ("chapter");
+        List<Comment> list = MyInfoManager.getInstance().getAllCommentByChapterId(ChapterId);
+        adapter = new CommentListAdapter(ctx, R.layout.comment, list);
+        itemsList.setAdapter(adapter);
+    }
+
+
 }

@@ -5,11 +5,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.FileProvider;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,14 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import core.Book;
 import core.BookList;
@@ -36,17 +29,21 @@ import core.Library;
 
 
 /**
+ * author Shahar Ben-Ezra
  * adapter that show view book
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    private List<Book> listItems;
+    private List<Book> listBook;
     private Context mContext;
     private  View v;
     private Book book;
-    public MyAdapter(List<Book> listItems, Context mContext) {
-        this.listItems = listItems;
+    private  Boolean flag;// when its true will show a specific menu items;
+
+    public MyAdapter(List<Book> listBook, Context mContext,boolean flag) {
+        this.listBook = listBook;
         this.mContext = mContext;
+        this.flag=flag;
     }
 
     @Override
@@ -58,8 +55,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 // final Book
-        book = listItems.get(position);
-        holder.itemView.setTag(listItems.get(position));
+        book = listBook.get(position);
+        holder.itemView.setTag(listBook.get(position));
         holder.txtTitle.setText(book.getTitle());
         holder.Written_Name.setText(book.getUserName());
         holder.completed.setText(book.getPhase());
@@ -68,7 +65,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.Update.setText("Update On "+book.getUpdaeOn());
         holder.Language.setText("Language "+book.getLanguage());
         holder.categories.setText("categories "+String.valueOf(book.getCategoryName()));
-         holder.vote_comment.setText(String.valueOf(book.getVote_comment()));
+        holder.vote_comment.setText(String.valueOf(book.getVote_comment()));
         holder.vote_heart.setText(String.valueOf(book.getVote_heart()));
         holder.vote_list.setText(String.valueOf(book.getVote_list()));
         if(book.getImage()!=null) {
@@ -81,12 +78,36 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 //Display option menu
                 PopupMenu popupMenu = new PopupMenu(mContext,holder.txtOptionDigit);
                 popupMenu.inflate(R.menu.options_menu);
-                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                MenuItem item_add_to_list = popupMenu.getMenu().findItem(R.id.app_item_add_to_list);
+                MenuItem item_add_to_library = popupMenu.getMenu().findItem(R.id.app_item_add_to_library);
+                MenuItem delete = popupMenu.getMenu().findItem(R.id.delete);
+                MenuItem EDIT = popupMenu.getMenu().findItem(R.id.EDIT);
+                MenuItem Add_Chapter = popupMenu.getMenu().findItem(R.id.Add_Chapter);
+
+                if(flag) {// if i used this adapter to a different fragment he will show a different menu item
+                    item_add_to_list.setVisible(false);
+                    item_add_to_library.setVisible(false);
+                    item_add_to_list.setVisible(false);
+                    delete.setVisible(true);
+                    EDIT.setVisible(true);
+                    Add_Chapter.setVisible(true);
+
+                }
+                else
+                {
+
+                    item_add_to_list.setVisible(true);
+                    item_add_to_library.setVisible(true);
+                    item_add_to_list.setVisible(true);
+                    delete.setVisible(false);
+                    EDIT.setVisible(false);
+                    Add_Chapter.setVisible(false);                }
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
 
-                        book=listItems.get(position);
+                        book= listBook.get(position);
 
                         switch (item.getItemId()) {
                             case R.id.app_item_share:
@@ -113,6 +134,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                                 break;
 
                             case R.id.app_item_add_to_list:
+                                /// adding this book to a list
                                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                                  final List<BookList>bl=  MyInfoManager.getInstance().getAllListBooks(Main.userName);
                                 String [] bLName = new String [bl.size()];//convert from obj to string
@@ -127,19 +149,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                                         BookList b= bl.get(position);
                                         List<Book> listItemsBook;
                                         listItemsBook= MyInfoManager.getInstance().getAllTheBooksAtList( b.getIdBookList());
-                                        if(listItemsBook.contains(book)){
+                                        if(listItemsBook.contains(book)){/// check if the story already ing this list
                                             v.findViewById(android.R.id.content);
                                             Snackbar snackbar = Snackbar
                                                     .make(v,R.string.already_added, Snackbar.LENGTH_LONG);
                                             snackbar.show();
                                         }
                                         else {
-                                            MyInfoManager.getInstance().createManyToManyTableBook(book.getBook_id(),bl.get(position).getIdBookList());
-                                            int x = Integer.parseInt(book.getVote_list())+1;
-                                            book.setVote_list(String.valueOf(x));
-                                            MyInfoManager.getInstance().updateBook(book);
-                                            b.setCountBookList(String.valueOf(Integer.parseInt(b.getCountBookList())+1));
-                                            MyInfoManager.getInstance().updateBookList(b);
+                                            MyInfoManager.getInstance().createManyToManyTable(book.getBook_id(),bl.get(position).getIdBookList());
+                                            int Vote_list= Integer.parseInt(book.getVote_list())+1;// add 1 vote list
+                                            book.setVote_list(String.valueOf(Vote_list));// update vote list in the book
+                                            MyInfoManager.getInstance().updateBook(book);// update book at the book table
+                                            b.setCountBookList(String.valueOf(Integer.parseInt(b.getCountBookList())+1));///update book list count
+                                            MyInfoManager.getInstance().updateBookList(b);// update book list at book list table
 
                                             v .findViewById(android.R.id.content);
                                             Snackbar snackbar = Snackbar
@@ -157,6 +179,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                                  break;
                             case R.id.app_item_copy_link:
                                 Toast.makeText(mContext, R.string.dont_need, Toast.LENGTH_LONG).show();
+                                break;
                             case R.id.app_item_add_to_library:
                                 Library l= new Library(Main.userName,book.getBook_id());
                                   if (MyInfoManager.getInstance().getLibrary(l)==null){
@@ -170,6 +193,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                                   }
 
                                 break;
+                            case R.id.Add_Chapter:
+                                 Intent intent1 = new Intent( mContext,ChapterActivity.class);
+                                intent1.putExtra("String", book.getTitle()) ;
+                                intent1.putExtra("int", book.getBook_id()) ;
+                                mContext.startActivity(intent1);
+                                break;
+
                             default:
                                 break;
                         }
@@ -185,7 +215,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return listItems.size();
+        return listBook.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -213,11 +243,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                     int x = listItems.indexOf(v.getTag());
-                    book=listItems.get(x);
+                     int x = listBook.indexOf(v.getTag());
+                    book= listBook.get(x);
 
                     Intent intent1 = new Intent( mContext,ChapterView.class);
-                      intent1.putExtra("int",txtTitle.getText().toString());
+                    intent1.putExtra("int",txtTitle.getText().toString());
                     intent1.putExtra("book_id", book.getBook_id()) ;
 
                     mContext.startActivity(intent1);

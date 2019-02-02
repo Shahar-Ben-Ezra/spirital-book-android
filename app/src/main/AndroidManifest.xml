@@ -3,6 +3,8 @@
     package="com.example.shaharben_ezra.myapplication">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -60,13 +62,11 @@
         <activity
             android:name=".Chose_Categories"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".Profile"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".MainActivity"
-            />
-
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".searchActivity"></activity>
     </application>
 
 </manifest>

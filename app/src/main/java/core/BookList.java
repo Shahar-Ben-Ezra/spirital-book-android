@@ -1,7 +1,15 @@
 package core;
 
-import java.util.Random;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+/**
+ * author Shahar Ben-Ezra
+ * bookList obj
+ */
 public class BookList {
 
   private  String idBookList;// id
@@ -57,4 +65,59 @@ public class BookList {
   public void setUserName(String userName1) {
     userName = userName1;
   }
+
+
+  /**
+   * from json to list of bookList obj
+   * @param json
+   * @return
+   */
+
+  public static List<BookList> parseJson(JSONObject json) {
+
+    List<BookList> BookList = null;
+    try {
+      BookList = new ArrayList<BookList>();
+      JSONArray foldersJsonArr = json.getJSONArray("lists");
+
+      for (int i = 0; i < foldersJsonArr.length(); i++) {
+        try {
+          JSONObject fObj = foldersJsonArr.getJSONObject(i);
+          BookList  list = new BookList();
+          if(list.fromJson(fObj)){
+            BookList.add(list);
+          }
+        } catch (Throwable e) {
+          e.printStackTrace();
+        }
+      }
+
+    } catch (Throwable e) {
+      e.printStackTrace();
+    }
+
+    return BookList;
+  }
+
+  /**
+   * set each row at JSONObject to  new values attribute at bookList obj depend to his row name
+   * @param fObj
+   * @return
+   */
+  public boolean fromJson(JSONObject fObj) {
+    boolean res = false;
+    try {
+      setUserName(fObj.getString("userName"));
+      setIdBookList(fObj.getString("idBookList"));
+      setBookListName(fObj.getString("BookListName"));
+      setCountBookList(fObj.getString("CountBookList"));
+
+      res = true;
+    } catch (Throwable t) {
+      t.printStackTrace();
+    }
+    return res;
+
+  }
+
 }

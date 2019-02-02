@@ -6,6 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * author Shahar Ben-Ezra
+ * Archive frag just a image because i dont need to do that
+ */
 public class Archive_frag extends Fragment {
 
 

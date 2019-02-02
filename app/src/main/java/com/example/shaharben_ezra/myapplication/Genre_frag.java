@@ -15,6 +15,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+/**
+ * Genre_fragment that show all thee gener at the app
+ * dont need to do that
+ */
 public class Genre_frag extends Fragment {
 
 
@@ -32,7 +36,7 @@ public class Genre_frag extends Fragment {
         String[] Gener;
 
         Gener=getResources().getStringArray(R.array.generlist);
-         adapter=new ArrayAdapter<String>(this.getActivity(),android.R.layout.simple_list_item_1,android.R.id.text1,Gener);
+        adapter=new ArrayAdapter<String>(this.getActivity(),android.R.layout.simple_list_item_1,android.R.id.text1,Gener);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override

@@ -5,6 +5,12 @@ import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
 import java.lang.reflect.Field;
+
+/**
+ * author Shahar Ben-Ezra
+ * this class help to the main Bottom Navigation View
+ * to stay at her place with not moving
+ */
 public class BottomNavigationViewHelper {
     @SuppressLint("RestrictedApi")
     public static void disableShiftMode(BottomNavigationView view) {

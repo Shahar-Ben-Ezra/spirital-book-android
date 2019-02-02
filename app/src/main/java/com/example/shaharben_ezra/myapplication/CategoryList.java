@@ -17,6 +17,7 @@ import core.Category;
 import core.MyInfoManager;
 
 /**
+ * author Shahar Ben-Ezra
  * activity that show all the categories that belong to specific type
  */
 public class CategoryList extends AppCompatActivity {

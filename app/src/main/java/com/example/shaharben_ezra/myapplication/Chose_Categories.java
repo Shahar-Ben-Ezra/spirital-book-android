@@ -15,6 +15,10 @@ import java.util.List;
 import core.Category;
 import core.MyInfoManager;
 
+/**
+ *this class is an activity
+ * that occurred when the user need to choose a category to his story
+ */
 public class Chose_Categories extends AppCompatActivity {
 
 
@@ -62,7 +66,7 @@ public class Chose_Categories extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent reIntent=new Intent();
+                Intent reIntent=new Intent();//will return to the activity that call this activity
 
                 reIntent.putExtra("String",s2.getSelectedItem().toString());
                 setResult(1,reIntent);

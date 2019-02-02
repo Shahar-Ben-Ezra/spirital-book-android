@@ -21,7 +21,11 @@ import java.util.List;
 
 import core.Category;
 import core.MyInfoManager;
-
+/**
+ * author Shahar Ben-Ezra
+ * My_stories fragment that includes his tabs
+ *   DELETED STORIES,MY STORIES and for each one he have is own fragment
+ */
 public class My_stories extends Fragment {
 
     private View cachedView;
@@ -43,7 +47,7 @@ public class My_stories extends Fragment {
             // Set Tabs inside Toolbar
             TabLayout tabs = (TabLayout) cachedView.findViewById(R.id.tabMyStories);
             tabs.setupWithViewPager(viewPager);
-            tabs.setSelectedTabIndicatorColor(Color.parseColor("#e5ff00"));
+            tabs.setSelectedTabIndicatorColor(Color.parseColor(getString(R.string.YELLOW)));
         }
 
 
@@ -54,9 +58,8 @@ public class My_stories extends Fragment {
 
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
-
-        Discover.Adapter adapter = new  Discover.Adapter(getFragmentManager());
-        adapter.addFragment(new Book_frag(MyInfoManager.getInstance().getAllBooksByUserName(Main.userName)), "MY STORIES");
+       Adapter adapter = new   My_stories.Adapter(getFragmentManager());
+        adapter.addFragment(new Book_frag(MyInfoManager.getInstance().getAllBooksByUserName(Main.userName),true), "MY STORIES");
 
         adapter.addFragment(new Message_frag(), "DELETED STORIES");
         viewPager.setAdapter(adapter);
@@ -125,8 +128,8 @@ public class My_stories extends Fragment {
             ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
             TextView storiesCount = (TextView) rowView.findViewById(R.id.storiesCount);
             Category c = dataList.get(position);
-             CategoryName.setText(c.getCategory_name());
-              storiesCount.setText("1"+"Stories ");
+            CategoryName.setText(c.getCategory_name());
+            storiesCount.setText("1"+"Stories ");
             return rowView;
 
         };

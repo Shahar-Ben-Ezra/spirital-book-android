@@ -5,9 +5,18 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+/**
+ * author Shahar Ben-Ezra
+ * Book obj
+ */
 public class Book {
 
     private String Book_id;
@@ -111,7 +120,7 @@ public class Book {
         return numChapters;
     }
 
-    public void setDescription(String numChapters) {
+    public void setnumChapters(String numChapters) {
         this.numChapters = numChapters;
     }
 
@@ -173,6 +182,67 @@ public class Book {
                 Objects.equals(vote_heart, book.vote_heart) &&
                 Objects.equals(vote_list, book.vote_list) &&
                 Objects.equals(image, book.image);
+    }
+
+
+    /**
+     * from json to list of book obj
+     * @param json
+     * @return
+     */
+        public static List<Book> parseJson(JSONObject json) {
+
+            List<Book> BookList = null;
+            try {
+                BookList = new ArrayList<Book>();
+                JSONArray BooksJsonArr = json.getJSONArray("Books");
+
+                for (int i = 0; i < BooksJsonArr.length(); i++) {
+                    try {
+                        JSONObject fObj = BooksJsonArr.getJSONObject(i);
+                        Book  B = new Book();
+                        if(B.fromJson(fObj)){
+                            BookList.add(B);
+                        }
+                    } catch (Throwable e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            } catch (Throwable e) {
+                e.printStackTrace();
+            }
+
+            return BookList;
+        }
+
+    /**
+     * set each row at JSONObject to  new values attribute at book obj depend to his row name
+     * @param fObj
+     * @return
+     */
+    public boolean fromJson(JSONObject fObj) {
+        boolean res = false;
+        try {
+            setBook_id(fObj.getString("bookid"));
+            setTitle(fObj.getString("title"));
+            setUserName(fObj.getString("UserName"));
+            setPhase(fObj.getString("phase"));
+            setLength(fObj.getString("length"));
+            setUpdaeOn(fObj.getString("updaeOn"));
+            setLanguage(fObj.getString("Language"));
+            setLength(fObj.getString("length"));
+            setCategoryName(fObj.getString("CategoryName"));
+            setnumChapters (fObj.getString("numChapters"));
+            setVote_comment (fObj.getString("vote_comment"));
+            setVote_heart(fObj.getString("vote_heart"));
+            setVote_list(fObj.getString("vote_list"));
+            res = true;
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+        return res;
+
     }
 
 }

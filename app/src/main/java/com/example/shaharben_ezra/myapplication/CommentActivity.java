@@ -51,19 +51,18 @@ public class CommentActivity extends AppCompatActivity {
          b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String spinerItem=s.getSelectedItem().toString();
 
+                final String spinerItem=s.getSelectedItem().toString();
                 String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                 Random random = new Random();
                 String Comment_id = String.valueOf(random.nextInt(900) + 100);
-                 String userName= Main.userName;
-                  MyInfoManager.getInstance().createComment(new Comment(currentDateTimeString,etComment.getText().toString().trim(),Comment_id,userName,ChapterId, (spinerItem)));
+                String userName= Main.userName;
+                MyInfoManager.getInstance().createComment(new Comment(currentDateTimeString,etComment.getText().toString().trim(),Comment_id,userName,ChapterId, (spinerItem)));
                 book.setVote_comment(String.valueOf(Integer.parseInt(book.getVote_comment())+1));
                 MyInfoManager.getInstance().updateBook(book);
                 View v2=(View)findViewById(android.R.id.content);
                 Snackbar snackbar = Snackbar
-                        .make(v2, "comment successfully sent!", Snackbar.LENGTH_LONG);
-
+               .make(v2, "comment successfully sent!", Snackbar.LENGTH_LONG);
                 snackbar.show();
                 finish();
 

@@ -12,10 +12,14 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * author Shahar Ben-Ezra
+ * this class create insert delete updated a tables at sql lite
+ */
 public class MyInfoDatabase extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "MyInfoDbNew";
+    private static final String DATABASE_NAME = "MyDB1";
 
     // Comment table
     private static final String TABLE_Comment = "Comment";
@@ -127,7 +131,10 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-
+    /**
+     * create all the table that will be at sqlite
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
@@ -186,8 +193,9 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
             if (!isTableExist(TABLE_BookManyList, db)) {
                 String CREATE_Booklist_TABLE = "create table if not exists " + TABLE_BookManyList + " ( "
-                        + BookManyList_COLUMN_idBook + " TEXT,"
-                        + BookManyList_COLUMN_idBookList + " TEXT)";
+                        + BookManyList_COLUMN_idBook + " TEXT ,"
+                        + BookManyList_COLUMN_idBookList + " TEXT , "
+                         + "  PRIMARY KEY( " + BookManyList_COLUMN_idBook + ", " + BookManyList_COLUMN_idBookList + "))";
 
                 db.execSQL(CREATE_Booklist_TABLE);
      }
@@ -195,7 +203,8 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
             if (!isTableExist(TABLE_Library, db)) {
                 String CREATE_Library_TABLE = "create table if not exists " + TABLE_Library + " ( "
                         + Library_COLUMN_userName + " TEXT,"
-                        + Library_COLUMN_idBook + " TEXT)";
+                        + Library_COLUMN_idBook + " TEXT,"
+                        +"  PRIMARY KEY(" + Library_COLUMN_userName +  ", " + Library_COLUMN_idBook +  ") )";
 
                 db.execSQL(CREATE_Library_TABLE);
             }
@@ -212,8 +221,10 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
             if (!isTableExist(TABLE_Like, db)) {
                 String CREATE_Like_TABLE = "create table if not exists " + TABLE_Like + " ( "
-                        + Like_COLUMN_userName + " TEXT,"
-                        + Like_COLUMN_idBook + " TEXT)";
+                        + Like_COLUMN_userName + " TEXT ,"
+                        + Like_COLUMN_idBook + " TEXT,"
+                        +"  PRIMARY KEY(" + Like_COLUMN_userName +  ", " + Like_COLUMN_idBook +  ") )";
+
 
 
                 db.execSQL(CREATE_Like_TABLE);
@@ -237,7 +248,12 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
     }
 
 
-
+    /**
+     * check if the table existent before he create a table
+     * @param name
+     * @param db
+     * @return
+     */
     private boolean isTableExist(String name, SQLiteDatabase db) {
 
         Cursor cursor = db.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '"+ name + "'", null);
@@ -251,8 +267,13 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
         return false;
     }
 
-    public void createBook(Book b) {
-
+    /**
+     * create  a new Book row at the table in sqlite
+     * @param b
+     * @return
+     */
+    public boolean createBook(Book b) {
+        boolean result=false;
         try {
              // make values to be inserted
             ContentValues values = new ContentValues();
@@ -278,19 +299,27 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
                 }
             }
 
-            // insert item
-            db.insert(TABLE_Book, null, values);
-
+            // insert Book
+                long res =  db.insert(TABLE_Book, null, values);
+                if(res != -1){
+                    result = true;
+                }
 
         } catch (Throwable t) {
-            t.printStackTrace();
+        //    t.printStackTrace();
         }
+        return result;
 
 
     }
 
-
-        public void createListBook(BookList b) {
+    /**
+     * create  a new List Book row at the table in sqlite
+     * @param b
+     * @return
+     */
+        public boolean createListBook(BookList b) {
+            boolean result = false;
 
         try {
             // make values to be inserted
@@ -302,17 +331,24 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 
             // insert ListBook
-            db.insert(TABLE_Booklist, null, values);
-
+            long res= db.insert(TABLE_Booklist, null, values);
+            if(res != -1){
+                result = true;
+            }
 
         } catch (Throwable t) {
-            t.printStackTrace();
         }
+
+            return result;
 
 
     }
 
-
+    /**
+     * create  a new Category row at the table in sqlite
+     * @param category
+     * @return
+     */
     public void createCategory(Category category) {
 
         try {
@@ -421,7 +457,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
             result.setUpdaeOn(cursor.getString(5));
             result.setLanguage(cursor.getString(6));
             result.setCategoryName(cursor.getString(7));
-            result.setDescription(cursor.getString(8));
+            result.setnumChapters(cursor.getString(8));
             result.setVote_comment((cursor.getString(9)));
             result.setVote_heart((cursor.getString(10)));
             result.setVote_list((cursor.getString(11)));
@@ -457,8 +493,6 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
         return result;
     }
-
-
 
 
     private Chapter cursorToChapter(Cursor cursor) {
@@ -644,43 +678,10 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
     }
 
     /**
-     * all books that are connect to list
-     * @param
-     * @return
-
-    public List<Book> getAllBooksByListName(String listName) {
-        List<Book> result = new ArrayList<Book>();
-        Cursor cursor = null;
-        try {
-            cursor = db
-                    .query(TABLE_Book,
-                            TABLE_Book_COLUMNS, Book_COLUMN_listName + " = ?",
-                            new String[] { String.valueOf(listName) }, null, null,
-                            null, null);
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-                Book book = cursorToBook(cursor);
-                result.add(book);
-                cursor.moveToNext();
-            }
-
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
-        finally {
-            // make sure to close the cursor
-            if(cursor!=null){
-                cursor.close();
-            }
-        }
-
-        return result;
-    }
+     * create  a new  ManyToMany row at the table in sqlite
+     * @param BookId
+     * @param listId
      */
-
-
-
-
     public void createManyToManyTableBook(String BookId,String listId) {
 
         try {
@@ -695,7 +696,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 
         } catch (Throwable t) {
-            t.printStackTrace();
+         //   t.printStackTrace();
         }
 
 
@@ -703,11 +704,11 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 
     /**
-     * create Chapter
+     * create  a new  Chapter row at the table in sqlite
      * @param C
      */
-    public void createChapter(Chapter C) {
-
+    public boolean createChapter(Chapter C) {
+        boolean result=false;
         try {
             // make values to be inserted
             ContentValues values = new ContentValues();
@@ -730,16 +731,52 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
                 }
             }
 
-            // insert item
-            db.insert(TABLE_Chapter, null, values);
+            // insert Chapter
+            long res =  db.insert(TABLE_Chapter, null, values);
+             if(res != -1){
+                result = true;
+            }
 
+        } catch (Throwable t) {
+       //     t.printStackTrace();
+        }
+        return result;
+
+    }
+    /**
+     *  get   Chapter By  Chapter-Id
+     * @param Chapterid
+     * @return
+     */
+    public Chapter getChapterByChapterId(String Chapterid) {
+         Chapter  result=null ;
+        Cursor cursor = null;
+        try {
+            cursor = db
+                    .query(TABLE_Chapter,
+                            TABLE_Chapter_COLUMNS, Chapter_COLUMN_Chapter_id + " = ?",
+                            new String[] { String.valueOf(Chapterid) }, null, null,
+                            null, null);
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                result = cursorToChapter(cursor);
+
+                cursor.moveToNext();
+            }
 
         } catch (Throwable t) {
             t.printStackTrace();
         }
+        finally {
+            // make sure to close the cursor
+            if(cursor!=null){
+                cursor.close();
+            }
+        }
 
-
+        return result;
     }
+
 
     /**
      *  get All Chapter By  Book-Id
@@ -814,11 +851,10 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
     }
 
 
-
-
-
     /**
      *  get All Books By  List-Id
+     *  With list id i will get that all the book id
+     *  return list of book obj
      * @param Listid
      * @return
      */
@@ -859,7 +895,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 
     /**
-     * update book
+     * update Book List
      * @param b
      * @return
      */
@@ -883,9 +919,13 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * create  a new Comment row at the table in sqlite
+     * @param c
+     */
 
-    public void createComment( Comment c) {
-
+    public boolean createComment( Comment c) {
+    boolean result=false;
         try {
 
              // make values to be inserted
@@ -897,15 +937,22 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
             values.put(Comment_Date, String.valueOf(c.getDate()));
             values.put(Comment_rate,  c.getrate());
 
-            // insert item
-            db.insert(TABLE_Comment, null, values);
+            // insert Comment
+           long res= db.insert(TABLE_Comment, null, values);
+            if(res != -1)
+                result = true;
 
         } catch (Throwable t) {
-            t.printStackTrace();
-        }
 
+         }
+        return  result;
     }
 
+    /**
+     * update comment
+     * @param c
+     * @return
+     */
     public int updateComment( Comment c) {
         int cnt = 0;
         try {  // make values to be inserted
@@ -983,22 +1030,27 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
         return result;
     }
-    public void deletComment(Comment c) {
-        boolean succeded = false;
+
+    /**
+     * delete comment
+     * @param c
+     */
+    public void deleteComment(Comment c) {
+        boolean succeeded = false;
         try {
 
             // delete Comment
             int rowAffected = db.delete(TABLE_Comment, Comment_Comment_id + " = ?",
                     new String[] { String.valueOf(c.getComment_id()) });
             if(rowAffected>0) {
-                succeded = true;
+                succeeded = true;
             }
 
         } catch (Throwable t) {
-            succeded = false;
+            succeeded = false;
             t.printStackTrace();
         } finally {
-            if(succeded){
+            if(succeeded){
                 ///   deleteFolderItems(B);  THIS ONE JUST
             }
         }
@@ -1010,8 +1062,8 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
      * @param BookId
      * @param userName
      */
-    public void insertLibrary(String BookId,String userName) {
-
+    public boolean insertLibrary(String BookId,String userName) {
+        boolean result=false;
         try {
 
             // make values to be inserted
@@ -1020,14 +1072,17 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
             values.put(Library_COLUMN_userName, userName);
 
             // insert Library
-            db.insert(TABLE_Library, null, values);
+            long res = db.insert(TABLE_Library, null, values);
 
+             if(res != -1){
+                result = true;
+            }
 
         } catch (Throwable t) {
-            t.printStackTrace();
+        //    t.printStackTrace();
         }
 
-
+        return  result;
     }
 
 
@@ -1035,7 +1090,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
      * delete library by user name and specific book id
      * @param c
      */
-    public void deleteLibrary(Library c) {
+    public boolean deleteLibrary(Library c) {
         boolean succeded = false;
         try {
 
@@ -1047,13 +1102,9 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
             }
 
         } catch (Throwable t) {
-            succeded = false;
-            t.printStackTrace();
-        } finally {
-            if(succeded){
-             }
+           //  t.printStackTrace();
         }
-
+        return succeded;
     }
 
 
@@ -1064,8 +1115,8 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
      * @param BookId
      * @param userName
      */
-    public void insertLike(String BookId,String userName) {
-
+    public boolean  insertLike(String BookId,String userName) {
+        boolean result=false;
         try {
 
             // make values to be inserted
@@ -1074,14 +1125,15 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
             values.put(Like_COLUMN_userName, userName);
 
             // insert Like
-            db.insert(TABLE_Like, null, values);
-
-
+            long res = db.insert(TABLE_Like, null, values);
+             if(res != -1) {
+                 result = true;
+             }
         } catch (Throwable t) {
-            t.printStackTrace();
+          //  t.printStackTrace();
         }
 
-
+        return result;
     }
 
 
@@ -1089,7 +1141,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
      * delete Like by user name and specific book id
      * @param c
      */
-    public void deleteLike(Like c) {
+    public boolean deleteLike(Like c) {
         boolean succeded = false;
         try {
 
@@ -1101,13 +1153,10 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
             }
 
         } catch (Throwable t) {
-            succeded = false;
             t.printStackTrace();
-        } finally {
-            if(succeded){
-            }
         }
 
+        return succeded;
     }
 
 

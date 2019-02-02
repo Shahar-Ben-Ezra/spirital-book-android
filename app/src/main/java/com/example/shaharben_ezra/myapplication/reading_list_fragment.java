@@ -25,15 +25,17 @@ import core.Book;
 import core.BookList;
 import core.MyInfoManager;
 
+/**
+ * author Shahar Ben-Ezra
+ *  a fragment that will show a list of reading book and can create a new list
+ */
 public class reading_list_fragment extends Fragment {
 
     private RecyclerView recyclerView;
     private List<BookList> listItems;
     private reading_list_adapter adapter ;
 
-    public reading_list_fragment( ) {
-
-    }
+    public reading_list_fragment( ) { }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -65,6 +67,10 @@ public class reading_list_fragment extends Fragment {
                         Snackbar snackbar = Snackbar
                                 .make(view,R.string.list_created, Snackbar.LENGTH_LONG);
                         snackbar.show();
+
+                        List<BookList> dataList= MyInfoManager.getInstance().getAllListBooks(Main.userName);
+                        adapter = new reading_list_adapter(dataList, getContext()) ;
+                        recyclerView.setAdapter(adapter);
                     }
                 });
                 builder.setNegativeButton(com.example.shaharben_ezra.myapplication.R.string.cancel, new DialogInterface.OnClickListener() {

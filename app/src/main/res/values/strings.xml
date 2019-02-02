@@ -191,5 +191,14 @@
     <string name="followers">FOLLOWERS</string>
     <string name="add_chapter">Add Chapter</string>
     <string name="edit">edit</string>
+    <string name="YELLOW">#e5ff00</string>
+    <string name="download_failed">download failed...</string>
+    <string name="please">Please wait...</string>
+    <string name="updating">Updating resources</string>
+    <string name="there_are">there are no more chapters</string>
+    <string name="search_again">please search again</string>
+    <string name="searching_for_books">searching for books</string>
+    <string name="no_result">no result found</string>
+    <string name="search_result">search result</string>
 
 </resources>

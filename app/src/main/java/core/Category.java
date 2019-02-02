@@ -1,6 +1,10 @@
 package core;
 
 
+/**
+ * author Shahar Ben-Ezra
+ * category obj
+ */
   public class Category {
     private String category_id;
     private String Category_name;

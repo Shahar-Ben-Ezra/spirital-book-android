@@ -137,7 +137,7 @@ public class current_read_adapter extends RecyclerView.Adapter<current_read_adap
                                             snackbar.show();
                                         }
                                         else {
-                                            MyInfoManager.getInstance().createManyToManyTableBook(book.getBook_id(),bl.get(position).getIdBookList());
+                                            MyInfoManager.getInstance().createManyToManyTable(book.getBook_id(),bl.get(position).getIdBookList());
                                             int x = Integer.parseInt(book.getVote_list())+1;
 
                                             book.setVote_list(String.valueOf(x));

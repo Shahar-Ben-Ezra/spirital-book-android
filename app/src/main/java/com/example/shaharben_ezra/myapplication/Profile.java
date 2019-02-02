@@ -1,5 +1,6 @@
 package com.example.shaharben_ezra.myapplication;
 
+import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,10 @@ import android.widget.TextView;
 
 import core.MyInfoManager;
 
+/**
+ * author Shahar Ben-Ezra
+ * this profile activity will show to user his own book stories is reading list and updated
+ */
 public class Profile extends AppCompatActivity {
 //windowActionBar to false in your theme to use a Toolbar instead.
     private Profile.SectionsPagerAdapter mSectionsPagerAdapter;
@@ -40,18 +45,18 @@ public class Profile extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabprofile);
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor(getString(R.string.YELLOW)));
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-         TextView stories_num = (TextView) findViewById(R.id.stories_num);
+        TextView stories_num = (TextView) findViewById(R.id.stories_num);
         stories_num.setText(""+MyInfoManager.getInstance().getAllBooksByUserName(Main.userName).size());
 
         TextView reading_list_num = (TextView) findViewById(R.id.reading_list_num);
         reading_list_num.setText(""+MyInfoManager.getInstance().getAllListBooks(Main.userName).size());
 
         TextView followers_num = (TextView) findViewById(R.id.followers_num);
-      //  followers_num.setText(Main.userName);
 
 
     }
@@ -73,7 +78,7 @@ public class Profile extends AppCompatActivity {
         if (id == R.id.action_settings) {
             View v2=(View)findViewById(android.R.id.content);
             Snackbar snackbar = Snackbar
-                    .make(v2, "dont need to do that ", Snackbar.LENGTH_LONG);
+                    .make(v2, R.string.dont_need, Snackbar.LENGTH_LONG);
 
             snackbar.show();
             return true;
@@ -81,7 +86,7 @@ public class Profile extends AppCompatActivity {
         if (id == R.id.action_SHARE1) {
             View v2=(View)findViewById(android.R.id.content);
             Snackbar snackbar = Snackbar
-                    .make(v2, "dont need to do that ", Snackbar.LENGTH_LONG);
+                    .make(v2, R.string.dont_need, Snackbar.LENGTH_LONG);
 
             snackbar.show();
             return true;
@@ -91,7 +96,7 @@ public class Profile extends AppCompatActivity {
         if (id == R.id.open_in_browser) {
             View v2=(View)findViewById(android.R.id.content);
             Snackbar snackbar = Snackbar
-                    .make(v2, "dont need to do that ", Snackbar.LENGTH_LONG);
+                    .make(v2, R.string.dont_need, Snackbar.LENGTH_LONG);
 
             snackbar.show();
             return true;
@@ -100,7 +105,7 @@ public class Profile extends AppCompatActivity {
         if (id == R.id.app_item_copy_link) {
             View v2=(View)findViewById(android.R.id.content);
             Snackbar snackbar = Snackbar
-                    .make(v2, "dont need to do that ", Snackbar.LENGTH_LONG);
+                    .make(v2, R.string.dont_need, Snackbar.LENGTH_LONG);
 
             snackbar.show();
             return true;
@@ -128,9 +133,9 @@ public class Profile extends AppCompatActivity {
 
             switch (position) {
                 case  0:
-                    return new Book_frag(MyInfoManager.getInstance().getAllBooksByUserName(Main.userName)) ;
+                    return new Book_frag(MyInfoManager.getInstance().getAllBooksByUserName(Main.userName),false) ;
                 case  1:
-                    return   new Book_frag(MyInfoManager.getInstance().getAllBooksByUserName(Main.userName))   ;
+                    return   new Book_frag(MyInfoManager.getInstance().getAllBooksByUserName(Main.userName),false)   ;
                 case  2:
                     return  new  reading_list_fragment() ;
 

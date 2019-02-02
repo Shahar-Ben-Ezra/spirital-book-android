@@ -1,6 +1,15 @@
 package core;
 
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+/**
+ * author Shahar Ben-Ezra
+ * Comment obj
+ */
 public class Comment {
 
   private String date;
@@ -67,5 +76,62 @@ public class Comment {
 
   public void setChapter_id(String chapter_id) {
     Chapter_id = chapter_id;
+  }
+
+
+
+  /**
+   * from json to list of Comment obj
+   * @param json
+   * @return
+   */
+  public static List<Comment> parseJson(JSONObject json) {
+
+    List<Comment> Comment = null;
+    try {
+      Comment = new ArrayList<Comment>();
+      JSONArray CommentJsonArr = json.getJSONArray("comments");
+
+      for (int i = 0; i < CommentJsonArr.length(); i++) {
+        try {
+          JSONObject fObj = CommentJsonArr.getJSONObject(i);
+          Comment  c = new Comment();
+          if(c.fromJson(fObj)){
+            Comment.add(c);
+          }
+        } catch (Throwable e) {
+          e.printStackTrace();
+        }
+      }
+
+    } catch (Throwable e) {
+      e.printStackTrace();
+    }
+
+    return Comment;
+  }
+
+  /**
+   * set each row at JSONObject to  new values attribute at Comment obj depend to his row name
+   * @param fObj
+   * @return
+   */
+  public boolean fromJson(JSONObject fObj) {
+    boolean res = false;
+    try {
+      setComment_id(fObj.getString("commentid"));
+      setChapter_id(fObj.getString("chapterId"));
+      setDescription(fObj.getString("description"));
+      setDate(fObj.getString("date"));
+      setrate(fObj.getString("rate"));
+      setUserName(fObj.getString("userName"));
+
+
+      res = true;
+    } catch (Throwable t) {
+      t.printStackTrace();
+    }
+    return res;
+
   }
 }

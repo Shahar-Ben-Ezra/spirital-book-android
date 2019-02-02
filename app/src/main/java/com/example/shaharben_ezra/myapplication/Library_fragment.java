@@ -22,7 +22,7 @@ import core.Library;
 import core.MyInfoManager;
 
 /**
- * this class show all the books that the user add to library
+ * this class Fragment show all the books that the user add to library
  */
 public class Library_fragment extends Fragment {
 

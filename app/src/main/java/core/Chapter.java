@@ -3,6 +3,15 @@ package core;
 
 import android.graphics.Bitmap;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+/**
+ * author Shahar Ben-Ezra
+ * Chapter obj
+ */
 public class Chapter {
   private  String Chapter_id;
   private  String Chapter_name;
@@ -90,4 +99,60 @@ public class Chapter {
     Book_id = book_id;
   }
 
+
+
+  /**
+   * from json to list of Chapter obj
+   * @param json
+   * @return
+   */
+
+  public static List<Chapter> parseJson(JSONObject json) {
+
+    List<Chapter> ChapterList = null;
+    try {
+      ChapterList = new ArrayList<Chapter>();
+      JSONArray ChapterJsonArr = json.getJSONArray("Chapters");
+
+      for (int i = 0; i < ChapterJsonArr.length(); i++) {
+        try {
+          JSONObject fObj = ChapterJsonArr.getJSONObject(i);
+          Chapter  chapter = new Chapter();
+          if(chapter.fromJson(fObj)){
+            ChapterList.add(chapter);
+          }
+        } catch (Throwable e) {
+          e.printStackTrace();
+        }
+      }
+
+    } catch (Throwable e) {
+      e.printStackTrace();
+    }
+
+    return ChapterList;
+  }
+
+  /**
+   * set each row at JSONObject to  new values attribute at Chapter obj depend to his row name
+   * @param fObj
+   * @return
+   */
+    public boolean fromJson(JSONObject fObj) {
+      boolean res = false;
+      try {
+        setChapter_id(fObj.getString("chapterid"));
+        setBook_id(fObj.getString("bookid"));
+        setChapter_name(fObj.getString("chapterName"));
+        setLength(fObj.getString("length"));
+        setText(fObj.getString("text"));
+        setAuthorNote(fObj.getString("AuthorNote"));
+        setEndNote(fObj.getString("EndNote"));
+         res = true;
+      } catch (Throwable t) {
+        t.printStackTrace();
+      }
+      return res;
+
+    }
 }

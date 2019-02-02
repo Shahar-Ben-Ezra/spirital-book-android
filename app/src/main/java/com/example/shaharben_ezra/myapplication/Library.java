@@ -14,6 +14,11 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * activities fragment that includes his tabs
+ * ACTIVITIES,UPDATE,MENTIONS and for each one he have is own fragment
+ */
 public class Library extends Fragment {
 
 private  View cachedView;
@@ -35,7 +40,7 @@ private  View cachedView;
             // Set Tabs inside Toolbar
             TabLayout tabs = (TabLayout) cachedView.findViewById(R.id.tabLibrary);
             tabs.setupWithViewPager(viewPager);
-             tabs.setSelectedTabIndicatorColor(Color.parseColor("#e5ff00"));
+             tabs.setSelectedTabIndicatorColor(Color.parseColor(getString(R.string.YELLOW)));
         }
 
 
@@ -47,7 +52,7 @@ private  View cachedView;
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
 
-        Discover.Adapter adapter = new   Discover.Adapter(getFragmentManager());
+         Adapter adapter = new   Library.Adapter(getFragmentManager());
         adapter.addFragment(new Library_fragment(), "CURRENT READS");
         adapter.addFragment(new Archive_frag(), "ARCHIVE");
         adapter.addFragment(new reading_list_fragment(), "READING");
@@ -57,6 +62,11 @@ private  View cachedView;
 
     }
 
+
+
+    /**
+     *  a adapter class the handel FragmentPagerAdapter
+     */
     static class Adapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -85,6 +95,5 @@ private  View cachedView;
             return mFragmentTitleList.get(position);
         }
     }
-
 
 }

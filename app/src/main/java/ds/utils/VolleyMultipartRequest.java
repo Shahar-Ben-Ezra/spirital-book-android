@@ -1,8 +1,5 @@
 package ds.utils;
 
-/**
- * Created by labda_000 on 12/13/2017.
- */
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;

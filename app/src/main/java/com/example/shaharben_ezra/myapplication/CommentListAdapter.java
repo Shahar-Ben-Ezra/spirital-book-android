@@ -28,7 +28,7 @@ public class CommentListAdapter  extends ArrayAdapter<Comment> {
 
     public View getView(int position, View view, ViewGroup parent) {
 
-      LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
         View rootView = mInflater.inflate(R.layout.comment, null);
 
@@ -48,7 +48,7 @@ public class CommentListAdapter  extends ArrayAdapter<Comment> {
         ImageView Star3 = (ImageView) rootView.findViewById(R.id.Star3);
         ImageView Star4 = (ImageView) rootView.findViewById(R.id.Star4);
         ImageView Star5 = (ImageView) rootView.findViewById(R.id.Star5);
-        ImageView imageViewBook_comment = (ImageView) rootView.findViewById(R.id.imageViewBook_comment);
+            ImageView imageViewBook_comment = (ImageView) rootView.findViewById(R.id.imageViewBook_comment);
 
 
 

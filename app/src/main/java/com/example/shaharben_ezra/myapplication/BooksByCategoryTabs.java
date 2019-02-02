@@ -17,6 +17,7 @@ import android.view.View;
 import core.MyInfoManager;
 
 /**
+ * author Shahar Ben-Ezra
  * this activity show us all the books that in specific category
  */
 public class BooksByCategoryTabs extends AppCompatActivity {
@@ -86,6 +87,7 @@ public class BooksByCategoryTabs extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     /**
+     *
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
@@ -102,11 +104,11 @@ public class BooksByCategoryTabs extends AppCompatActivity {
 
              switch (position) {
                 case  0:
-                     return new Book_frag(MyInfoManager.getInstance().getAllTheBooksCategoryName(s)) ;
+                     return new Book_frag(MyInfoManager.getInstance().getAllTheBooksCategoryName(s),false) ;
                 case  1:
-                    return new Book_frag(MyInfoManager.getInstance().getAllTheBooksCategoryName(s)) ;
+                    return new Book_frag(MyInfoManager.getInstance().getAllTheBooksCategoryName(s),false) ;
                 case  2:
-                    return new Book_frag(MyInfoManager.getInstance().getAllTheBooksCategoryName(s)) ;
+                    return new Book_frag(MyInfoManager.getInstance().getAllTheBooksCategoryName(s),false ) ;
             }
             return null;
         }

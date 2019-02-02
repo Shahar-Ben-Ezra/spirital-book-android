@@ -55,21 +55,23 @@ public class Create_story extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Random random = new Random();
-                String x = String.valueOf(random.nextInt(900) + 100);
+                String bookId = String.valueOf(random.nextInt(900) + 100);
                 String user= Main.userName;
 
                 String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                 final String spinerLan=spinner.getSelectedItem().toString();
                 String category=category_selected.getText().toString();
                 Category c= MyInfoManager.getInstance().getCategoryobj(category);
-                c.setConut(String.valueOf(Integer.parseInt(c.getConut())+1));//update Category count++;
+                if(!category.equals("No category selected")) {
+                    c.setConut(String.valueOf(Integer.parseInt(c.getConut()) + 1));//update Category count++;
+                }
                 MyInfoManager.getInstance().updateCategory( c);///update at sql;
-                MyInfoManager.getInstance().AddBooks(new Book( x, et_Story_Title.getText().toString(),user,"Completed",
-                       "length",currentDateTimeString,spinerLan,category_selected.getText().toString(),
+                MyInfoManager.getInstance().AddBooks(new Book( bookId, et_Story_Title.getText().toString(),user,"Completed",
+                       "length",currentDateTimeString,spinerLan,category,
                         "1","0","0","0",B) );
                 Intent intent1 = new Intent( getBaseContext(),ChapterActivity.class);
                 intent1.putExtra("String", et_Story_Title.getText().toString()) ;
-                intent1.putExtra("int", x) ;
+                intent1.putExtra("int", bookId) ;
 
                 startActivity(intent1);
 
